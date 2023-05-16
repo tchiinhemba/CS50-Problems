@@ -5,7 +5,7 @@
 int main(void) 
 {
 
-    int n = 10;
+    int n = 20;
     
     for (int i = 0; i < n; i++)
     {
@@ -25,6 +25,7 @@ int main(void)
         {
             printf("#");
         }
+
         printf("\n");
 
     }
