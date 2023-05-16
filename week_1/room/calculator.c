@@ -11,5 +11,6 @@ int main(void)
     // type casting in C
     float z = (float) x / (float) y;
 
-    printf("%f\n", z);
+    // print with 20 numbers after dot
+    printf("%.20f\n", z);
 }
