@@ -2,14 +2,15 @@
 #include <cs50.h>
 #include <stdio.h>
 
+#define N 20
+
 int main(void) 
 {
 
-    int n = 20;
     
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = n; j > i; j--)
+        for (int j = N; j > i; j--)
         {
             printf(" ");
         }
