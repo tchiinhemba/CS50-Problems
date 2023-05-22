@@ -25,13 +25,6 @@ int main(void)
             printf("#");
         }
 
-        printf("  ");
-
-        for (int l = 1; l <= i; l++)
-        {
-            printf("#");
-        }
-
         printf("\n");
     }
 }
