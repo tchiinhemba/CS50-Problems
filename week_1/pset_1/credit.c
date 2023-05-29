@@ -3,42 +3,70 @@
 #include <string.h>
 #include <stdlib.h>
 
+int luhnValidation(char* cardNumber);
+int textNumberToNumber(char text);
+char numberToText(int number);
+
 int main(void) 
 {
 
+    int validationResult = 0;
     string cardNumberAsText = get_string("Number: ");
-    int numberState = 0;
-    int sum = 0;
-    int lastNumber = 0;
 
-    for (int i = 0; i < strlen(cardNumberAsText); i++)
-    {
-        numberState = cardNumberAsText[i] - '0';
+    validationResult = luhnValidation(cardNumberAsText);
 
-        numberState *= 2;
-
-        if (numberState > 9)
-        {
-            numberState -= 9;
-        }
-
-        sum += numberState;
-        i++;
-    }
-
-    for (int i = 0; i < strlen(cardNumberAsText); i++)
-    {
-        i++;
-        sum += cardNumberAsText[i] - '0';
-    }
-
-    for (int i = 0; i <)
-
-
-    printf("%i\n", sum);
-    
+    printf("%i\n", validationResult);
 }
 
+
+int luhnValidation(char* cardNumber)
+{
+
+    int finalSum = 0;
+    int individualNumber = 0;
+
+    for (int i = 0; i < strlen(cardNumber); i++)
+    {
+        individualNumber = textNumberToNumber(cardNumber[i]);
+
+        individualNumber *= 2;
+
+        if (individualNumber > 9)
+        {
+            individualNumber -= 9;
+        }
+
+        finalSum += individualNumber;
+
+
+        i++;
+    }
+
+    for (int i = 0; i < strlen(cardNumber); i++)
+    {
+        i++;
+        finalSum += cardNumber[i] - '0';
+    }
+
+    return finalSum;
+}
+
+
+int textNumberToNumber(char text)
+{
+    return text - '0';
+}
+
+char numberToText(int number)
+{
+    char* text;
+
+    text = (char*) malloc(100 * sizeof(char));
+
+    sprintf(text, "%d", number);
+
+    return text;
+}
 
 
 // 4220360000559421
