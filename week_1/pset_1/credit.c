@@ -6,29 +6,39 @@
 int main(void) 
 {
 
-    double number = get_double("Number: ");
-    char numberInText[20];
-
-    int firstSum = 0;
-    int seccondSum = 0;
+    string cardNumberAsText = get_string("Number: ");
     int numberState = 0;
+    int sum = 0;
+    int lastNumber = 0;
 
-    sprintf(numberInText, "%.0f", number);
-
-    for (int i = 0; i < strlen(numberInText); i++)
+    for (int i = 0; i < strlen(cardNumberAsText); i++)
     {
-        numberState = numberInText[i] - '0';
+        numberState = cardNumberAsText[i] - '0';
+
+        numberState *= 2;
 
         if (numberState > 9)
         {
-            firstSum += (numberState - 9) * 2;
+            numberState -= 9;
         }
-        firstSum += numberState * 2;
+
+        sum += numberState;
         i++;
-        printf("%i", firstSum);
     }
-    // printf("%i\n", firstSum);
+
+    for (int i = 0; i < strlen(cardNumberAsText); i++)
+    {
+        i++;
+        sum += cardNumberAsText[i] - '0';
+    }
+
+    for (int i = 0; i <)
+
+
+    printf("%i\n", sum);
+    
 }
+
 
 
 // 4220360000559421
