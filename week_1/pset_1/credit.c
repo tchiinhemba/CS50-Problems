@@ -2,24 +2,34 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
-int luhnValidation(char* cardNumber);
-int textNumberToNumber(char text);
-char numberToText(int number);
+int luhnValidation(char *cardNumber);
+int toNumber(char text);
+char *toString(int number);
+void checkValidation(char *number);
 
-int main(void) 
+int main(void)
 {
 
     int validationResult = 0;
+
     string cardNumberAsText = get_string("Number: ");
+
+    for (int i = 0; i < strlen(cardNumberAsText); i++)
+    {
+        if (cardNumberAsText[i] == '-')
+        {
+            cardNumberAsText = get_string("Number: ");
+        }
+    }
 
     validationResult = luhnValidation(cardNumberAsText);
 
-    printf("%i\n", validationResult);
+    checkValidation(toString(validationResult));
 }
 
-
-int luhnValidation(char* cardNumber)
+int luhnValidation(char *cardNumber)
 {
 
     int finalSum = 0;
@@ -27,8 +37,8 @@ int luhnValidation(char* cardNumber)
 
     for (int i = 0; i < strlen(cardNumber); i++)
     {
-        individualNumber = textNumberToNumber(cardNumber[i]);
 
+        individualNumber = toNumber(cardNumber[i]);
         individualNumber *= 2;
 
         if (individualNumber > 9)
@@ -37,36 +47,39 @@ int luhnValidation(char* cardNumber)
         }
 
         finalSum += individualNumber;
-
-
         i++;
     }
 
     for (int i = 0; i < strlen(cardNumber); i++)
     {
         i++;
-        finalSum += cardNumber[i] - '0';
+        finalSum += toNumber(cardNumber[i]);
     }
-
     return finalSum;
 }
 
+void checkValidation(char *number)
+{
+    int bufferItem = strlen(number) - 1;
 
-int textNumberToNumber(char text)
+    if (toNumber(number[bufferItem]) == 0)
+    {
+        printf("VALID\n");
+        return;
+    }
+    printf("INVALID\n");
+}
+
+int toNumber(char text)
 {
     return text - '0';
 }
 
-char numberToText(int number)
+char *toString(int number)
 {
-    char* text;
-
-    text = (char*) malloc(100 * sizeof(char));
-
-    sprintf(text, "%d", number);
-
-    return text;
+    char *result = (char *)malloc(20 * sizeof(char));
+    sprintf(result, "%d", number);
+    return result;
 }
-
 
 // 4220360000559421
