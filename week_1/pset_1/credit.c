@@ -7,7 +7,7 @@
 int luhnValidation(char *cardNumber);
 int toNumber(char text);
 char *toString(int number);
-void checkValidation(char *number);
+void checkValidation(char *number, char *cardNumber);
 
 int main(void)
 {
@@ -18,7 +18,7 @@ int main(void)
 
     for (int i = 0; i < strlen(cardNumberAsText); i++)
     {
-        if (cardNumberAsText[i] == '-')
+        if (isdigit(cardNumberAsText[i]) == false)
         {
             cardNumberAsText = get_string("Number: ");
         }
@@ -26,9 +26,10 @@ int main(void)
 
     validationResult = luhnValidation(cardNumberAsText);
 
-    checkValidation(toString(validationResult));
+    checkValidation(toString(validationResult), cardNumberAsText);
 }
 
+// Luhn Validation
 int luhnValidation(char *cardNumber)
 {
 
@@ -58,23 +59,39 @@ int luhnValidation(char *cardNumber)
     return finalSum;
 }
 
-void checkValidation(char *number)
+void checkValidation(char *number, char *cardNumber)
 {
     int bufferItem = strlen(number) - 1;
+    int firstDigit = toNumber(cardNumber[0]);
 
     if (toNumber(number[bufferItem]) == 0)
     {
-        printf("VALID\n");
-        return;
+        switch (firstDigit)
+        {
+        case 3:
+            printf("AMEX\n");
+            break;
+        case 4:
+            printf("VISA\n");
+            break;
+        case 5:
+            printf("MASTERCARD\n");
+            break;
+        }
     }
-    printf("INVALID\n");
+    else
+    {
+        printf("INVALID\n");
+    }
 }
 
+// convert to number
 int toNumber(char text)
 {
     return text - '0';
 }
 
+// convert to string
 char *toString(int number)
 {
     char *result = (char *)malloc(20 * sizeof(char));
@@ -82,4 +99,13 @@ char *toString(int number)
     return result;
 }
 
-// 4220360000559421
+void checkBrand(char *number)
+{
+
+    for (int i = 0; i < strlen(number); i++)
+    {
+        if (number)
+        {
+        }
+    }
+}
