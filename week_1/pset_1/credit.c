@@ -18,7 +18,7 @@ int main(void)
 
     for (int i = 0; i < strlen(cardNumberAsText); i++)
     {
-        if (cardNumberAsText[i] == '-')
+        if (isdigit(cardNumberAsText[i]) == false)
         {
             cardNumberAsText = get_string("Number: ");
         }
@@ -29,6 +29,7 @@ int main(void)
     checkValidation(toString(validationResult), cardNumberAsText);
 }
 
+// Luhn Validation
 int luhnValidation(char *cardNumber)
 {
 
@@ -84,14 +85,27 @@ void checkValidation(char *number, char *cardNumber)
     }
 }
 
+// convert to number
 int toNumber(char text)
 {
     return text - '0';
 }
 
+// convert to string
 char *toString(int number)
 {
     char *result = (char *)malloc(20 * sizeof(char));
     sprintf(result, "%d", number);
     return result;
+}
+
+void checkBrand(char *number)
+{
+
+    for (int i = 0; i < strlen(number); i++)
+    {
+        if (number)
+        {
+        }
+    }
 }
