@@ -101,11 +101,11 @@ char *toString(int number)
 
 void checkBrand(char *number)
 {
-
     for (int i = 0; i < strlen(number); i++)
     {
         if (number)
         {
+                
         }
     }
 }
