@@ -18,7 +18,7 @@ int main(int argc, string argv[])
 
     int key = atoi(argv[1]);
     string text = get_string("Plaintext: ");
-    string cipherText = malloc(strlen(text) + 1);
+    string cipherText = text;
 
     for (int i = 0, len = strlen(text); i < len; i++)
     {
@@ -26,14 +26,20 @@ int main(int argc, string argv[])
     }
 
     printf("ciphertext: %s\n", cipherText);
+    
 }
 
 char rotate(char c, int key)
 {
     if (isalpha(c))
     {
-        char base = isupper(c) ? 'A' : 'a';
-        return (c - base + key) % 26 + base;
+        if (c < 'z' || c < 'Z')
+        {
+            return c + key;
+        } else
+        {
+            return c + key % 26;
+        }
     }
     return c;
 }
@@ -50,13 +56,13 @@ bool validateArguments(int n, string s)
     {
         for (int i = 0, len = strlen(s); i < len; i++)
         {
-            if (!isdigit(s[i]))
+            if (isalpha(s[i]) || ispunct(s[i]) || isblank(s[i]))
             {
                 return false;
             }
         }
 
-        if (atoi(s) <= 0)
+        if (atoi(s) < 0)
         {
             return false;
         }
