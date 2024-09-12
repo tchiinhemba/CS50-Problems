@@ -1,0 +1,12 @@
+sort1 uses: BUBBLE SORT
+
+How do you know?: Bubble Sort has a best-case time complexity of O(n) for already sorted lists, which aligns with the low execution time observed for sorted50000.txt. The execution time for reversed50000.txt is significantly higher than for sorted50000.txt, but lower than for random50000.txt, indicating that Bubble Sort performs poorly on random and reverse ordered lists. The consistent pattern with the expected behavior of Bubble Sort confirms this identification.
+
+sort2 uses: MERGE SORT
+
+How do you know?: Merge Sort has a time complexity of O(n log n), which aligns with the observed execution times. The time for sorted50000.txt, reversed50000.txt, and random50000.txt is relatively low and consistent, indicating that Merge Sort performs efficiently regardless of the initial order of the elements. The low execution time for all list types, combined with the improved performance compared to Bubble Sort, suggests that sort2 is likely using Merge Sort.
+
+
+sort3 uses: SELECTION SORT
+
+How do you know?: The time complexity of Selection Sort is O(n²) in both the worst and best cases. The execution times are similar for sorted, reversed, and random lists, indicating that the algorithm does not optimize based on the order of the input data. This behavior is consistent with Selection Sort, which performs a fixed number of operations regardless of the initial order of the elements.
